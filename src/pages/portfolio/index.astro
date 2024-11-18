@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import CategoryFilter from '../../components/CategoryFilter.astro';
+
+// Sample project data - replace with your actual projects
+const projects = [
+  {
+    title: "Creative Project 1",
+    description: "A stunning piece that showcases modern design principles and creative innovation.",
+    image: "/images/project1.jpg",
+    category: "Design",
+    link: "/portfolio/project1"
+  },
+  {
+    title: "Artwork Series",
+    description: "An exploration of color and form through digital medium.",
+    image: "/images/project2.jpg",
+    category: "Art",
+    link: "/portfolio/project2"
+  },
+  {
+    title: "Commercial Work",
+    description: "Brand identity design for a leading tech company.",
+    image: "/images/project3.jpg",
+    category: "Branding",
+    link: "/portfolio/project3"
+  },
+  {
+    title: "Personal Project",
+    description: "Experimental work pushing the boundaries of digital art.",
+    image: "/images/project4.jpg",
+    category: "Art",
+    link: "/portfolio/project4"
+  },
+  {
+    title: "Client Project",
+    description: "Website design and development for a luxury brand.",
+    image: "/images/project5.jpg",
+    category: "Design",
+    link: "/portfolio/project5"
+  },
+  {
+    title: "Brand Identity",
+    description: "Complete brand overhaul for a startup.",
+    image: "/images/project6.jpg",
+    category: "Branding",
+    link: "/portfolio/project6"
+  }
+];
+
+const categories = ["Design", "Art", "Branding"];
+const { category = 'all' } = Astro.url.searchParams;
+
+const filteredProjects = category === 'all' 
+  ? projects 
+  : projects.filter(project => project.category.toLowerCase() === category);
+---
+
+<Layout title="Portfolio - Creative Works">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold mb-4">My Portfolio</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Explore my collection of creative works, spanning various disciplines and styles.
+      </p>
+    </div>
+
+    <CategoryFilter categories={categories} activeCategory={category} />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {filteredProjects.map(project => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </div>
+</Layout>

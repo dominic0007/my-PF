@@ -1,0 +1,47 @@
+---
+const featuredWorks = [
+  {
+    title: "Project 1",
+    description: "Description of your first featured project",
+    image: "/images/project1.jpg",
+    link: "/portfolio/project1"
+  },
+  {
+    title: "Project 2",
+    description: "Description of your second featured project",
+    image: "/images/project2.jpg",
+    link: "/portfolio/project2"
+  },
+  {
+    title: "Project 3",
+    description: "Description of your third featured project",
+    image: "/images/project3.jpg",
+    link: "/portfolio/project3"
+  }
+];
+---
+
+<section class="py-16">
+  <h2 class="text-3xl font-bold text-center mb-12">Featured Works</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {featuredWorks.map(work => (
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+          src={work.image}
+          alt={work.title}
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">{work.title}</h3>
+          <p class="text-gray-600 mb-4">{work.description}</p>
+          <a
+            href={work.link}
+            class="text-primary hover:text-primary/80 font-medium"
+          >
+            Learn More →
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

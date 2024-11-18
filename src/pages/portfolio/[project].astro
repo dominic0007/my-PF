@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  // This would typically come from your CMS or data source
+  return [
+    {
+      params: { project: 'project1' },
+      props: {
+        title: "Creative Project 1",
+        description: "A stunning piece that showcases modern design principles and creative innovation.",
+        fullDescription: `
+          This project was created to explore the intersection of design and functionality.
+          The goal was to create something both beautiful and practical, pushing the boundaries
+          of what's possible while maintaining usability.
+        `,
+        image: "/images/project1.jpg",
+        category: "Design",
+        client: "Client Name",
+        year: "2024",
+        role: "Lead Designer",
+        technologies: ["Photoshop", "Illustrator", "Figma"]
+      }
+    },
+    // Add more project paths as needed
+  ];
+}
+
+const { project } = Astro.params;
+const {
+  title,
+  description,
+  fullDescription,
+  image,
+  category,
+  client,
+  year,
+  role,
+  technologies
+} = Astro.props;
+---
+
+<Layout title={`${title} - Portfolio`}>
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-96 object-cover"
+      />
+      
+      <div class="p-8">
+        <div class="mb-8">
+          <span class="text-primary font-medium">{category}</span>
+          <h1 class="text-4xl font-bold mt-2 mb-4">{title}</h1>
+          <p class="text-xl text-gray-600">{description}</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div>
+            <h2 class="text-2xl font-bold mb-4">Project Details</h2>
+            <dl class="space-y-4">
+              <div>
+                <dt class="font-medium text-gray-500">Client</dt>
+                <dd class="text-gray-900">{client}</dd>
+              </div>
+              <div>
+                <dt class="font-medium text-gray-500">Year</dt>
+                <dd class="text-gray-900">{year}</dd>
+              </div>
+              <div>
+                <dt class="font-medium text-gray-500">Role</dt>
+                <dd class="text-gray-900">{role}</dd>
+              </div>
+              <div>
+                <dt class="font-medium text-gray-500">Technologies</dt>
+                <dd class="flex flex-wrap gap-2 mt-1">
+                  {technologies.map(tech => (
+                    <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
+            <p class="text-gray-700 whitespace-pre-line">{fullDescription}</p>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center border-t pt-8">
+          <a
+            href="/portfolio"
+            class="text-primary hover:text-primary/80 font-medium flex items-center gap-2"
+          >
+            ← Back to Portfolio
+          </a>
+          <a
+            href="/contact"
+            class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            Start a Project
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

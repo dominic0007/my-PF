@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FeaturedWorks from '../components/FeaturedWorks.astro';
+---
+
+<Layout title="Your Name - Creative Portfolio">
+  <section class="py-20 text-center">
+    <h1 class="text-5xl font-bold mb-6">Welcome to My Creative World</h1>
+    <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+      I'm a creative professional specializing in [your specialty]. 
+      Explore my portfolio and shop for original pieces.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a
+        href="/portfolio"
+        class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        View Portfolio
+      </a>
+      <a
+        href="/shop"
+        class="bg-secondary text-white px-6 py-3 rounded-lg hover:bg-secondary/90 transition-colors"
+      >
+        Visit Shop
+      </a>
+    </div>
+  </section>
+
+  <FeaturedWorks />
+</Layout>
